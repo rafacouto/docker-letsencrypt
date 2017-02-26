@@ -1,7 +1,8 @@
 
 # docker-letsencrypt
 
-Docker image to run Letsencrypt certbot command and sharing resources with nginx.
+Docker image to run [Letsencrypt](https://letsencrypt.org/) certbot command 
+and sharing resources with nginx.
 
 ## Get the docker image
 
@@ -26,17 +27,16 @@ verification files required by the CA.
 
 This is my _letsencrypt.conf_ with Nginx:
 
-server {
+    server {
 
-    listen 80;
-    server_name *;
+        listen 80;
+        server_name *;
 
-    location /.well-known {
-        root /var/www/letsencrypt;
-        try_files $uri =404;
+        location /.well-known {
+            root /var/www/letsencrypt;
+            try_files $uri =404;
+        }
     }
-
-}
 
 This is my _docker-compose.yml_ to run the Nginx server:
 
