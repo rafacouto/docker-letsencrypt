@@ -1,6 +1,12 @@
 
 # docker-letsencrypt
 
+[![Docker Stars](https://img.shields.io/docker/stars/caligari/letsencrypt.svg)](https://hub.docker.com/r/caligari/letsencrypt/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/caligari/letsencrypt.svg)](https://hub.docker.com/r/caligari/letsencrypt/)
+[![Docker Build](https://img.shields.io/docker/automated/caligari/letsencrypt.svg)](https://hub.docker.com/r/caligari/letsencrypt/)
+[![Layers](https://images.microbadger.com/badges/image/caligari/letsencrypt.svg)](https://microbadger.com/images/caligari/letsencrypt)
+[![Version](https://images.microbadger.com/badges/version/caligari/letsencrypt.svg)](https://microbadger.com/images/caligari/letsencrypt)
+
 Docker image to run [Letsencrypt](https://letsencrypt.org/) certbot command 
 and sharing resources with nginx.
 
