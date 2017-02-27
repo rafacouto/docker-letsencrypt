@@ -3,12 +3,6 @@ FROM debian:jessie
 
 LABEL maintainer "Rafa Couto <caligari@treboada.net>"
 
-# webroot to share with nginx container
-VOLUME /var/www/html
-
-# configuration
-VOLUME /etc/letsencrypt
-
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" \
         >> /etc/apt/sources.list.d/jessie-backports.list \
     && apt-get update \
@@ -16,10 +10,17 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main" \
         -t jessie-backports certbot \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo 'webroot-path = /var/www/html' > /etc/letsencrypt/cli.ini
+ADD hooks /etc/letsencrypt/hooks
 
-WORKDIR /var/www/html
+RUN echo 'webroot-path = /var/www/html' > /etc/letsencrypt/cli.ini \
+    && chmod +x /etc/letsencrypt/hooks/*
 
 # default command
-CMD certbot renew
+CMD certbot renew --post-hook "/etc/letsencrypt/hooks/post-hook"
+
+# webroot to share with nginx container
+VOLUME /var/www/html
+
+# configuration
+VOLUME /etc/letsencrypt
 

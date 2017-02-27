@@ -67,8 +67,12 @@ This is my _docker-compose.yml_ to run the Nginx server:
         -ti caligari/letsencrypt \
         /bin/bash
 
+Register with your email:
+
+    certbot register --agree-tos -m 'mail@example.com'
+
 And you can generate new certificates with certbot command:
 
-    certbot certonly -d mydomain.com
+    certbot certonly --post-hook /etc/letsencrypt/hooks/post-hook --webroot -d mydomain.com
 
 

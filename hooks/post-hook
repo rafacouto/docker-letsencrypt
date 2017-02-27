@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# convert symlinks to hard ones
+find /etc/letsencrypt/live -type l -exec bash -c 'ln -f "$(readlink -m "$0")" "$0"' {} \;
+
